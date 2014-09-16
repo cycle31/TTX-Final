@@ -226,6 +226,17 @@ $(document).ready (function(){
               case "ready_to_be_released":
               addClass(carid,'green');
               break;
+            };
+            switch(currentUnit.cars.car_type) {
+              case "flat":
+              $('#'+carid).append('<p>|____|</p>');
+              break;
+              case "box":
+              
+              break;
+              case "gondola":
+              
+              break;              
             }
         }
         
