@@ -229,7 +229,7 @@ $(document).ready (function(){
             };
             switch(currentUnit.cars.car_type) {
               case "flat":
-              $('#'+carid).append('<p>|____|</p>');
+              $('#'+carid).append('<h3 style="font-size:12px">|____|</h3>');
               break;
               case "box":
               
