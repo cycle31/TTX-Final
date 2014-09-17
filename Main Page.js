@@ -208,6 +208,9 @@ $(document).ready (function(){
               //$('#carid').css('width', '140px');
               addClass(carid,'carTwoUnits');
               break;
+              case "3":
+              addClass(carid,'carThreeUnits');
+              break;
               case "5":
               addClass(carid,'carFiveUnits');
               //#carid.style.cssText = "width:350px";
@@ -229,13 +232,13 @@ $(document).ready (function(){
             };
             switch(currentUnit.cars.car_type) {
               case "flat":
-              $('#'+carid).append('<h3 style="font-size:12px">|____|</h3>');
+              $('#'+carid).append('<h3 style="font-size:10px; line-height:0.5">|_'+currentUnit.cars.car_length+'_|</h3>');
               break;
               case "box":
-              
+              $('#'+carid).append('<h3 style="font-size:10px; line-height:0.5">[_'+currentUnit.cars.car_length+'_]</h3>');
               break;
               case "gondola":
-              
+              $('#'+carid).append('<h3 style="font-size:10px; line-height:0.5">{_'+currentUnit.cars.car_length+'_}</h3>');
               break;              
             }
         }
