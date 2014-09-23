@@ -4,15 +4,9 @@ $(document).ready(function() {
 
 
 $(window).load(function(){
-$(".button").click(function() {
-    if ($(this).hasClass('highlight')) {
-  $(this).removeClass('highlight');
-} else {
-  
-  $(this).addClass('highlight');
-  }
-   });
-
+  $(".button").click(function() {
+    $(this).toggleClass('highlight');
+  });
 });
 
 $(window).load(function() {
@@ -24,6 +18,44 @@ $(window).load(function() {
   }
 });
 });
+
+$(window).load(function(){
+$("#move").click(function() {
+  $('.trackbutton').addClass('highlightTrack');
+  $('.trackbutton').click(function(){
+  var r = confirm("Are you sure you want to move");
+  if (r==true) {
+ //var ownId = $(this).attr('id');
+ var parentId = $(this).parent().attr('id');
+ if ($(this).parent().children('.empty_unit').size() > 0) {
+    $(this).parent().children('.empty_unit').first().append($('.highlight'));
+    $(this).parent().children('.empty_unit').first().removeClass('empty_unit');
+ }
+ /*var index = thegame.tracks.map(function(el) {
+  return el.track_id;
+}).indexOf(parentId.slice(-1));
+ index = parseInt(index-1);
+ for (i=0; i<thegame.tracks[index].units.length; i++){
+  console.log("I work!");
+    var chosenUnit = thegame.tracks[index].units[i];
+    if (!chosenUnit.hasOwnProperty('cars')) {
+      $("button.button.highlight").appendTo('#'+parentId);
+      break;
+    }
+ }*/
+ //$("button").closest("div").attr("id");
+ //$('#'+parentId).append('#'+ownId);
+ //$("button.button.highlight").appendTo('#'+parentId); //thegame.tracks[this].track_id);
+ $("button.button.highlight").removeClass("highlight");
+ $("button.trackbutton.highlightTrack").removeClass("highlightTrack");
+  }
+  else {
+  return false;
+  }
+ 
+    });
+  });
+ });
 //declare global variables
 var thegame;
 thegame = new mygame;
@@ -63,24 +95,6 @@ function mygame(){
     this.cars.push(newcar);
     newcar.show(unitid); 
     };
-  /*this.addcarOneUnit = function (jsonUnit, unitid){
-    var newcar = new carOneUnit();
-    jQuery.extend(newcar, jsonUnit);
-    this.cars.push(newcar);
-    newcar.show(unitid);    
-  };
-  this.addcarTwoUnits = function (jsonUnit, unitid){
-    var newcar = new carTwoUnits();
-    jQuery.extend(newcar, jsonUnit);
-    this.cars.push(newcar);
-    newcar.show(unitid);    
-  };
-  this.addcarFiveUnits = function (jsonUnit, unitid){
-    var newcar = new carFiveUnits();
-    jQuery.extend(newcar, jsonUnit);
-    this.cars.push(newcar);
-    newcar.show(unitid);    
-  };*/
 }
 
 function yard(){
@@ -148,24 +162,6 @@ function addClass(id,new_class){
 }
 
 
-/*function carOneUnit(){
-  this.show = function (id) {
-    $('#'+id).append('<button class="carOneUnit" id="c'+this.cars.car_id+'">'+this.cars.car_number+'</button>').trigger('create'); 
-  };
-}
-
-function carTwoUnits(){
-  this.show = function (id) {
-    $('#'+id).append('<button class="carTwoUnits" id="c'+this.cars.car_id+'">'+this.cars.car_number+'</button>').trigger('create'); 
-  };
-}
-
-  function carFiveUnits(){
-  this.show = function (id) {
-    $('#'+id).append('<button class="carFiveUnits" id="c'+this.cars.car_id+'">'+this.cars.car_number+'</button>').trigger('create'); 
-  };
-}  */
-
 $(document).ready (function(){
   
   var server = new ajaxServiceLayer();
@@ -185,18 +181,7 @@ $(document).ready (function(){
       if (currentUnit.hasOwnProperty('cars')) {
         lookForCar(currentUnit.cars.car_id);
         if (found === false) {
-          /*switch(currentUnit.cars.car_length) {
-              case "1":
-              thegame.addcarOneUnit(currentUnit,unitid);
-              break;
-              case "2":
-              thegame.addcarTwoUnits(currentUnit,unitid);
-              break;
-              case "5":
-              thegame.addcarFiveUnits(currentUnit,unitid);
-              break;
-            }*/
-            thegame.addcar(currentUnit,unitid);
+          thegame.addcar(currentUnit,unitid);
             var carid = "c"+currentUnit.cars.car_id;
             switch(currentUnit.cars.car_length) {
               case "1":
@@ -204,9 +189,9 @@ $(document).ready (function(){
               break;
               case "2":
               //document.getElementById("carid").className += "carTwoUnits";
-              //$('#carid').addClass('carTwoUnits');
+              $('#'+carid).addClass('carTwoUnits');
               //$('#carid').css('width', '140px');
-              addClass(carid,'carTwoUnits');
+              //addClass(carid,'carTwoUnits');
               break;
               case "3":
               addClass(carid,'carThreeUnits');
@@ -241,19 +226,16 @@ $(document).ready (function(){
               $('#'+carid).append('<h3 style="font-size:10px; line-height:0.5">{_'+currentUnit.cars.car_length+'_}</h3>');
               break;              
             }
-        }
+        }       
         
-        /*for (c=0;c<thegame.cars.length;c++)
-        {
-          if (thegame.cars[c].car_id === currentUnit.cars.car_id) {
-          return;
-          }*/
         else {
             found = false;
         }
        // }
       }
-      
+     else {
+        addClass(unitid,'empty_unit');
+     } 
     }
   };
 });

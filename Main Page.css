@@ -20,11 +20,11 @@
     padding-top:10px; 
     /*width:70px;*/
     border-radius: 30%;
-    border-width: 2px;
+    border-width: 1px;
     border-style: solid;
     font-size: 15px;
     background-color: #FFFFFF;
-    /*position: relative;*/
+      /*position: relative;*/
     /*display: inline-block;*/
     }
 
@@ -115,11 +115,18 @@
     }
 
     .red {
-      background-color: red;
+      background-color: #FF3D3D;
     }
 
     .highlight {
+      border-width: 3px;
       border-color: red;
+      box-shadow:         3px 3px 3px 3px #FF8400;      
+    }
+
+    .highlightTrack {
+      /*border-color: #f96d6d;*/
+      box-shadow:         3px 3px 5px 6px #f96d6d;
     }
 
     #move {
