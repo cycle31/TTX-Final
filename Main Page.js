@@ -7,7 +7,6 @@ $(window).load(function(){
   $(".button").click(function() {
     $(this).toggleClass('highlight');
     $(this).parent('.unit').toggleClass('empty_unit');
-    var ownId = $(this).attr('id');
   });
 });
 
@@ -35,7 +34,7 @@ $("#move").click(function() {
       alert('car is too long!');
       $('.highlight').parent('.unit').removeClass('empty_unit');
     }  else {
-
+      
   var r = confirm("Are you sure you want to move");
   if (r===true) {
  //var ownId = $(this).attr('id');
@@ -43,6 +42,12 @@ $("#move").click(function() {
  if ($(this).parent().children('.empty_unit').size() > 0) {
     $(this).parent().children('.empty_unit').first().append($('.highlight'));
     $(this).parent().children('.empty_unit').first().removeClass('empty_unit');
+    if (carLength > 1) {
+        var nextEmpties = carLength-1;
+        for (i=0;i<=nextEmpties;i++) {
+          track.children('.empty_unit').eq(i).removeClass('empty_unit');
+        }
+      };
  }
  /*var index = thegame.tracks.map(function(el) {
   return el.track_id;
@@ -264,7 +269,6 @@ $(document).ready (function(){
     }
   };
 });
-
 
 function ajaxServiceLayer(){
   
