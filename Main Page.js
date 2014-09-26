@@ -7,6 +7,13 @@ $(window).load(function(){
   $(".button").click(function() {
     $(this).toggleClass('highlight');
     $(this).parent('.unit').toggleClass('empty_unit');
+    var carId = $(this).attr('id').replace("car_","");
+    var carLength = findById(carId).cars.car_length;
+    if (carLength > 1) {
+        for (i=0;i<carLength;i++) {
+          $(this).parent('.unit').next().eq(i).toggleClass('empty_unit');
+        }
+      };
   });
 });
 
@@ -43,8 +50,7 @@ $("#move").click(function() {
     $(this).parent().children('.empty_unit').first().append($('.highlight'));
     $(this).parent().children('.empty_unit').first().removeClass('empty_unit');
     if (carLength > 1) {
-        var nextEmpties = carLength-1;
-        for (i=0;i<=nextEmpties;i++) {
+        for (i=0;i<carLength;i++) {
           track.children('.empty_unit').eq(i).removeClass('empty_unit');
         }
       };
@@ -73,9 +79,12 @@ $("#move").click(function() {
  }
  $("button.button.highlight").removeClass("highlight");
  $("button.trackbutton.highlightTrack").removeClass("highlightTrack");
+ $("#move").hide();
     });
   });
  });
+
+
 //declare global variables
 var thegame;
 thegame = new mygame;
