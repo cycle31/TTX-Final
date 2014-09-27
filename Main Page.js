@@ -13,6 +13,19 @@ $(window).load(function(){
 });
 
 $(window).load(function() {
+	$("#searchbutton").click(function(){;
+		$('.button').filter(function(index) {
+			var carName = $(this).text();
+			var searchText = $('#searchfield').prop('value');
+			return ( carName === searchText);
+		}).each(function() {
+			console.log($(this));
+			$(this).addClass('selected');
+	  });
+  });
+});
+
+$(window).load(function() {
    $(".button").click(function() {
     if ($(".button").hasClass('selected')) {
     $("#move").show();
