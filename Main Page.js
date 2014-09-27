@@ -5,21 +5,16 @@ $(document).ready(function() {
 
 $(window).load(function(){
   $(".button").click(function() {
-    $(this).toggleClass('highlight');
-    $(this).parent('.unit').toggleClass('empty_unit');
+    $('.selected').removeClass('selected');
+    $(this).addClass('selected');
     var carId = $(this).attr('id').replace("car_","");
-    var carLength = findById(carId).cars.car_length;
-    if (carLength > 1) {
-        for (i=0;i<carLength;i++) {
-          $(this).parent('.unit').next().eq(i).toggleClass('empty_unit');
-        }
-      };
+    var carLength = findById(carId).cars.car_length;    
   });
 });
 
 $(window).load(function() {
    $(".button").click(function() {
-    if ($(".button").hasClass('highlight')) {
+    if ($(".button").hasClass('selected')) {
     $("#move").show();
   } else {
     $("#move").hide();
@@ -28,62 +23,76 @@ $(window).load(function() {
 });
 
 $(window).load(function(){
-$("#move").click(function() {
-  $('.trackbutton').addClass('highlightTrack');
-  $('.trackbutton').click(function(){
-    var track = $(this).parent();
-    var emptyUnitCount = track.children('.empty_unit').length;
-    var car = $('.highlight');
-    var carId = car.attr('id').replace("car_","");
+  $("#move").click(enableTrackButtons);
+});
 
-    var carLength = findById(carId).cars.car_length;
+var enableTrackButtons = function(){
+  $('.trackbutton').addClass('highlightTrack');
+  $('.trackbutton').on('click', moveCarToTrack);
+}
+
+var moveCarToTrack = function(){
+  var track = $(this).parent();
+  var emptyUnitCount = track.children('.empty_unit').length;
+  var car = $('.selected');
+  var carId = car.attr('id').replace("car_","");
+
+
+  var carLength = findById(carId).cars.car_length;
+ /* var fromUnits = [];
+  var carUnit = car.parent();
+    for (i=0;i<carLength;i++) {         
+      fromUnits.push(carUnit);
+      var carUnit = carUnit.next(); 
+    }*/
+  var currentUnit;
+  
+  
     if(carLength > emptyUnitCount) {
       alert('car is too long!');
-      $('.highlight').parent('.unit').removeClass('empty_unit');
-    }  else {
-      
-  var r = confirm("Are you sure you want to move");
-  if (r===true) {
- //var ownId = $(this).attr('id');
- var parentId = $(this).parent().attr('id');
- if ($(this).parent().children('.empty_unit').size() > 0) {
-    $(this).parent().children('.empty_unit').first().append($('.highlight'));
-    $(this).parent().children('.empty_unit').first().removeClass('empty_unit');
-    if (carLength > 1) {
-        for (i=0;i<carLength;i++) {
-          track.children('.empty_unit').eq(i).removeClass('empty_unit');
-        }
-      };
- }
- /*var index = thegame.tracks.map(function(el) {
-  return el.track_id;
-}).indexOf(parentId.slice(-1));
- index = parseInt(index-1);
- for (i=0; i<thegame.tracks[index].units.length; i++){
-  console.log("I work!");
-    var chosenUnit = thegame.tracks[index].units[i];
-    if (!chosenUnit.hasOwnProperty('cars')) {
-      $("button.button.highlight").appendTo('#'+parentId);
-      break;
+      $('.selected').parent('.unit').removeClass('empty_unit');
+    } else {
+      var r = confirm("Are you sure you want to move");
+      if (r===true) {
+        //$('.selected').parent('.unit').toggleClass('empty_unit');
+        currentUnit = $('.selected').parent('.unit');
+        currentUnit.addClass('empty_unit');
+        var newUnit = $(this).parent().children('.empty_unit').first();
+        newUnit.append($('.selected'));
+        newUnit.removeClass('empty_unit');
+        if (carLength > 1) {
+          for (i=1;i<carLength;i++) {
+            currentUnit = currentUnit.next();
+            currentUnit.addClass('empty_unit');
+            newUnit = newUnit.next();
+            newUnit.removeClass('empty_unit');
+            //$('.selected').parent('.unit').next().toggleClass('empty_unit');
+          }
+        };
+         //var parentId = $(this).parent().attr('id');
+         /*if ($(this).parent().children('.empty_unit').size() > 0) {
+            $(this).parent().children('.empty_unit').first().append($('.selected'));
+            $(this).parent().children('.empty_unit').first().removeClass('empty_unit');
+            
+            if (carLength > 1) {
+                for (j=0;j<carLength;j++) {
+                  newUnit = newUnit.next();
+                  newUnit.removeClass('empty_unit');
+                  //track.children('.empty_unit').eq(i).removeClass('empty_unit');
+                }
+              };
+         }*/ /*else {
+            fromUnits.each().removeClass('empty_unit');
+         }*/
+         
     }
- }*/
- //$("button").closest("div").attr("id");
- //$('#'+parentId).append('#'+ownId);
- //$("button.button.highlight").appendTo('#'+parentId); //thegame.tracks[this].track_id);
- 
   }
-
-  else {
-  return false;
-  }
- }
- $("button.button.highlight").removeClass("highlight");
- $("button.trackbutton.highlightTrack").removeClass("highlightTrack");
- $("#move").hide();
-    });
-  });
- });
-
+   $("button.button.selected").removeClass("selected");
+   $("button.trackbutton.highlightTrack").removeClass("highlightTrack");
+   $(this).off('click', moveCarToTrack);
+   $("#move").hide();
+  
+}
 
 //declare global variables
 var thegame;
