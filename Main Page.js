@@ -194,22 +194,6 @@ function car(){
   };
 }
 
-function addClass(id,new_class){
-       var i,n=0;
-
-       new_class=new_class.split(",");
-
-       for(i=0;i<new_class.length;i++){
-               if((" "+document.getElementById(id).className+" ").indexOf(" "+new_class[i]+" ")==-1){
-                       document.getElementById(id).className+=" "+new_class[i];
-                       n++;
-               }
-       }
-
-       return n;
-}
-
-
 $(document).ready (function(){
   
   var server = new ajaxServiceLayer();
@@ -233,34 +217,30 @@ $(document).ready (function(){
             var carid = "car_"+currentUnit.cars.car_id;
             switch(currentUnit.cars.car_length) {
               case "1":
-              addClass(carid,'carOneUnit');
+              $('#'+carid).addClass('carOneUnit');
               break;
               case "2":
-              //document.getElementById("carid").className += "carTwoUnits";
               $('#'+carid).addClass('carTwoUnits');
-              //$('#carid').css('width', '140px');
-              //addClass(carid,'carTwoUnits');
               break;
               case "3":
-              addClass(carid,'carThreeUnits');
+              $('#'+carid).addClass('carThreeUnits');
               break;
               case "5":
-              addClass(carid,'carFiveUnits');
-              //#carid.style.cssText = "width:350px";
+              $('#'+carid).addClass('carFiveUnits');
               break;
             };
             switch(currentUnit.cars.car_status) {
               case "ready":
-              addClass(carid,'white');
+              $('#'+carid).addClass('white');
               break;
               case "just_arrived":
-              addClass(carid,'blue');
+              $('#'+carid).addClass('blue');
               break;
               case "not_workable":
-              addClass(carid,'red');
+              $('#'+carid).addClass('red');
               break;
               case "ready_to_be_released":
-              addClass(carid,'green');
+              $('#'+carid).addClass('green');
               break;
             };
             switch(currentUnit.cars.car_type) {
@@ -282,7 +262,7 @@ $(document).ready (function(){
        // }
       }
      else {
-        addClass(unitid,'empty_unit');
+        $('#'+unitid).addClass('empty_unit');
      } 
     }
   };
