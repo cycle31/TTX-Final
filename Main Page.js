@@ -5,25 +5,43 @@ $(document).ready(function() {
 
 $(window).load(function(){
   $(".button").click(function() {
+    $('.highlighted').removeClass('highlighted');
     $('.selected').removeClass('selected');
-    $(this).addClass('selected');
-    var carId = $(this).attr('id').replace("car_","");
-    var carLength = findById(carId).cars.car_length;    
+    $(this).addClass('selected');    
   });
 });
 
-$(window).load(function() {
-	$("#searchbutton").click(function(){;
-		$('.button').filter(function(index) {
-			var carName = $(this).text();
-			var searchText = $('#searchfield').prop('value');
-			return ( carName === searchText);
-		}).each(function() {
-			console.log($(this));
-			$(this).addClass('selected');
-	  });
+$(window).load(function(){
+  $('#logo').click(function(){
+    if (!$('.trackbutton').hasClass('highlightTrack')) {
+      $('.highlighted').removeClass('highlighted');
+      $('.selected').removeClass('selected');
+    };
   });
 });
+
+
+$(window).load(function() {
+  $("#searchbutton").click(function(){;
+    $('.button').filter(checkForMatch).each(highlight);
+  });
+});
+
+var checkForMatch = function() {
+  var carName = $(this).text();
+  var searchText = $('#searchfield').prop('value');
+  if (carName.match(searchText)) {
+    return true;
+  }
+};
+
+var highlight = function() {
+  console.log($(this));
+  $('.selected').removeClass('selected');
+  $('.highlighted').removeClass('highlighted');
+  $("#move").hide();
+  $(this).addClass('highlighted');
+};
 
 $(window).load(function() {
    $(".button").click(function() {
@@ -52,14 +70,7 @@ var moveCarToTrack = function(){
 
 
   var carLength = findById(carId).cars.car_length;
- /* var fromUnits = [];
-  var carUnit = car.parent();
-    for (i=0;i<carLength;i++) {         
-      fromUnits.push(carUnit);
-      var carUnit = carUnit.next(); 
-    }*/
   var currentUnit;
-  
   
     if(carLength > emptyUnitCount) {
       alert('car is too long!');
@@ -81,23 +92,7 @@ var moveCarToTrack = function(){
             newUnit.removeClass('empty_unit');
             //$('.selected').parent('.unit').next().toggleClass('empty_unit');
           }
-        };
-         //var parentId = $(this).parent().attr('id');
-         /*if ($(this).parent().children('.empty_unit').size() > 0) {
-            $(this).parent().children('.empty_unit').first().append($('.selected'));
-            $(this).parent().children('.empty_unit').first().removeClass('empty_unit');
-            
-            if (carLength > 1) {
-                for (j=0;j<carLength;j++) {
-                  newUnit = newUnit.next();
-                  newUnit.removeClass('empty_unit');
-                  //track.children('.empty_unit').eq(i).removeClass('empty_unit');
-                }
-              };
-         }*/ /*else {
-            fromUnits.each().removeClass('empty_unit');
-         }*/
-         
+        };         
     }
   }
    $("button.button.selected").removeClass("selected");
@@ -309,7 +304,7 @@ function ajaxServiceLayer(){
                             "cars": {
                                 "car_id": "1",
                                 "car_initials": "TTX",
-                                "car_number": "11111",
+                                "car_number": "11101",
                                 "car_type": "flat",
                                 "car_length": "1",
                                 "car_status": "ready"
@@ -321,7 +316,7 @@ function ajaxServiceLayer(){
                             "cars": {
                                 "car_id": "2",
                                 "car_initials": "TTX",
-                                "car_number": "11112",
+                                "car_number": "11102",
                                 "car_type": "flat",
                                 "car_length": "1",
                                 "car_status": "just_arrived"
@@ -334,7 +329,7 @@ function ajaxServiceLayer(){
                             "cars": {
                                 "car_id": "3",
                                 "car_initials": "TTX",
-                                "car_number": "11113",
+                                "car_number": "11103",
                                 "car_type": "flat",
                                 "car_length": "2",
                                 "car_status": "ready"
@@ -346,7 +341,7 @@ function ajaxServiceLayer(){
                             "cars": {
                                 "car_id": "3",
                                 "car_initials": "TTX",
-                                "car_number": "11113",
+                                "car_number": "11103",
                                 "car_type": "flat",
                                 "car_length": "2",
                                 "car_status": "ready"
@@ -372,7 +367,7 @@ function ajaxServiceLayer(){
                             "cars": {
                                 "car_id": "4",
                                 "car_initials": "TTX",
-                                "car_number": "11114",
+                                "car_number": "11104",
                                 "car_type": "flat",
                                 "car_length": "1",
                                 "car_status": "ready"
@@ -384,7 +379,7 @@ function ajaxServiceLayer(){
                             "cars": {
                                 "car_id": "5",
                                 "car_initials": "TTX",
-                                "car_number": "11115",
+                                "car_number": "11105",
                                 "car_type": "flat",
                                 "car_length": "1",
                                 "car_status": "not_workable"
@@ -396,8 +391,8 @@ function ajaxServiceLayer(){
                             "cars": {
                                 "car_id": "6",
                                 "car_initials": "TTX",
-                                "car_number": "11116",
-                                "car_type": "flat",
+                                "car_number": "11106",
+                                "car_type": "gondola",
                                 "car_length": "2",
                                 "car_status": "ready"
                             }
@@ -408,8 +403,8 @@ function ajaxServiceLayer(){
                             "cars": {
                                 "car_id": "6",
                                 "car_initials": "TTX",
-                                "car_number": "11116",
-                                "car_type": "flat",
+                                "car_number": "11106",
+                                "car_type": "gondola",
                                 "car_length": "2",
                                 "car_status": "ready"
                             }
@@ -420,7 +415,7 @@ function ajaxServiceLayer(){
                             "cars": {
                                 "car_id": "7",
                                 "car_initials": "TTX",
-                                "car_number": "11117",
+                                "car_number": "11107",
                                 "car_type": "flat",
                                 "car_length": "1",
                                 "car_status": "ready_to_be_released"
@@ -438,8 +433,8 @@ function ajaxServiceLayer(){
                             "cars": {
                                 "car_id": "8",
                                 "car_initials": "TTX",
-                                "car_number": "11118",
-                                "car_type": "flat",
+                                "car_number": "11108",
+                                "car_type": "box",
                                 "car_length": "1",
                                 "car_status": "ready"
                             }
@@ -450,7 +445,7 @@ function ajaxServiceLayer(){
                             "cars": {
                                 "car_id": "9",
                                 "car_initials": "TTX",
-                                "car_number": "11119",
+                                "car_number": "11109",
                                 "car_type": "flat",
                                 "car_length": "5",
                                 "car_status": "ready"
@@ -462,7 +457,7 @@ function ajaxServiceLayer(){
                             "cars": {
                                 "car_id": "9",
                                 "car_initials": "TTX",
-                                "car_number": "11119",
+                                "car_number": "11109",
                                 "car_type": "flat",
                                 "car_length": "5",
                                 "car_status": "ready"
@@ -474,7 +469,7 @@ function ajaxServiceLayer(){
                             "cars": {
                                 "car_id": "9",
                                 "car_initials": "TTX",
-                                "car_number": "11119",
+                                "car_number": "11109",
                                 "car_type": "flat",
                                 "car_length": "5",
                                 "car_status": "ready"
@@ -486,7 +481,7 @@ function ajaxServiceLayer(){
                             "cars": {
                                 "car_id": "9",
                                 "car_initials": "TTX",
-                                "car_number": "11119",
+                                "car_number": "11109",
                                 "car_type": "flat",
                                 "car_length": "5",
                                 "car_status": "ready"
@@ -498,7 +493,7 @@ function ajaxServiceLayer(){
                             "cars": {
                                 "car_id": "9",
                                 "car_initials": "TTX",
-                                "car_number": "11119",
+                                "car_number": "11109",
                                 "car_type": "flat",
                                 "car_length": "5",
                                 "car_status": "ready"
@@ -525,7 +520,7 @@ function ajaxServiceLayer(){
                                 "car_id": "10",
                                 "car_initials": "TTX",
                                 "car_number": "11110",
-                                "car_type": "flat",
+                                "car_type": "box",
                                 "car_length": "1",
                                 "car_status": "ready"
                             }

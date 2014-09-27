@@ -124,6 +124,10 @@
       box-shadow:         3px 3px 3px 3px #FF8400;      
     }
 
+    .highlighted {
+      outline: solid 3px blue;
+    }
+
     .highlightTrack {
       /*border-color: #f96d6d;*/
       box-shadow:         3px 3px 5px 6px #f96d6d;
