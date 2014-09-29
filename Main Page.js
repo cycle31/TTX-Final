@@ -24,7 +24,8 @@ $(window).load(function(){                                  //onclick logo sign 
 $(window).load(function() {                                 
   $("#searchbutton").click(function(){;                     //onclick "search" button 
     $('.button').filter(checkForMatch).each(highlight);     //search through html elements located on the page which has class "button" meaning cars;
-  });
+    $('html, body').animate({scrollTop: $(".highlighted").offset().top, scrollLeft: $(".highlighted").offset().left}, "fast");
+  });                                                       //scrolls screen to the found car; 
 });
 
 var checkForMatch = function() {                        //check if the car is displayed on the page;
@@ -42,6 +43,8 @@ var highlight = function() {                            //if found highlights th
   $("#move").hide();
   $(this).addClass('highlighted');
 };
+
+
 
 $(window).load(function() {                             //when a car is clicked shows and hides "move" button;
    $(".button").click(function() {
