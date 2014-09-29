@@ -105,13 +105,13 @@
       box-shadow:         3px 3px 5px 6px #f96d6d;
     }
 
-    /*#refresh {
-      content: &#8635;
+    #refresh {
+      /*content: &#8635;*/
       display:  inline-block; 
       transform: rotate(90deg);
       font-size:18px;
       font-weight:bold;
-    }*/
+    }
 
     #move {
   background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f24537), color-stop(1, #c62d1f) );
@@ -142,8 +142,8 @@
   width:100px;
   text-decoration:none;
   text-align:center;
-  position: fixed;
-  right: 5%;
+  /*position: relative;
+  left: 5%;*/
  }
 
     body {

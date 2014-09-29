@@ -152,26 +152,28 @@ function yard(){
   };
 }
 
-function track(){  
-  function createTrack(jsonDataObject){
-    this.track_id = jsonDataObject.track_id;
-    for(i=0;i<jsonDataObject.units.length;i++){
-      this.units.push(jsonDataObject.units[i])
-    }
-  }
-
-  this.debug = function (){
-     console.log ('my id is: ' + this.track_id);
-  };
-  this.show = function () {
+function track(){                 //creates a track div and a track button inside the div; pulls track_name from JSON;
+   this.show = function () {
     $('#yard').append('<div class="track" id="t'+this.track_id+'"><button class="trackbutton" style="font-weight:bold">'+this.track_name+'</button></div>').trigger('create'); 
+  };                              //gives id to the created element "t"+ id from JSON to make it unique;
+}
+
+function unit(){                  //creates div "unit" which belongs to specific track (recognizes it by id);
+  this.show = function (id) {
+    $('#'+id).append('<div class="unit" id="u'+this.unit_id+'"></div>').trigger('create'); 
+  };
+}
+
+function car(){                   //creates a car button inside the unit (based on its id); pulls car_number fromJSON;
+  this.show = function (id) {
+    $('#'+id).append('<button class="button" id="car_'+this.cars.car_id+'">'+this.cars.car_number+'</button>').trigger('create'); 
   };
 }
 
 var found = false;
-function lookForCar (currentCarId) {
-  for (c=0;c<thegame.cars.length;c++) {
-    if (thegame.cars[c].cars.car_id === currentCarId) {          
+function lookForCar (currentCarId) {                      //checks if car with a specific id have been created;
+  for (c=0;c<thegame.cars.length;c++) {                   //looks inside the cars array which was created in thegame();
+    if (thegame.cars[c].cars.car_id === currentCarId) {   
           found = true;
           break;
           }
@@ -179,51 +181,41 @@ function lookForCar (currentCarId) {
 }
 
 
-function findById(id) {
-    for (c=0;c<thegame.cars.length;c++) {
+function findById(id) {                                   //finds the car by its id inside the cars array;
+    for (c=0;c<thegame.cars.length;c++) {                 
       if (thegame.cars[c].cars.car_id === id) {
-        return thegame.cars[c];
+        return thegame.cars[c];                           //returns car object;  
       }
     }    
   }
 
-
-function unit(){
-  this.show = function (id) {
-    $('#'+id).append('<div class="unit" id="u'+this.unit_id+'"></div>').trigger('create'); 
-  };
-}
-
-function car(){
-  this.show = function (id) {
-    $('#'+id).append('<button class="button" id="car_'+this.cars.car_id+'">'+this.cars.car_number+'</button>').trigger('create'); 
-  };
-}
-
-$(document).ready (function(){
+$(document).ready (function(){                                //builds the yard from JSON;
   
-  var server = new ajaxServiceLayer();
+  var server = new ajaxServiceLayer();                        
   var tracksFromJSON = server.gettracks();
   console.log(tracksFromJSON);
-  thegame.addyard(tracksFromJSON);
-  for (t=0;t<tracksFromJSON.tracks.length;t++)
-  {  
-    var currentTrack = tracksFromJSON.tracks[t]
-    thegame.addtrack(currentTrack);
-    for (u=0;u<currentTrack.units.length;u++)
-    {
-      var trackid = "t"+currentTrack.track_id;
-      var currentUnit = currentTrack.units[u];
-      var unitid = "u"+currentUnit.unit_id;
-      thegame.addunit(currentTrack.units[u],trackid);
-      if (currentUnit.hasOwnProperty('cars')) {
-        lookForCar(currentUnit.cars.car_id);
+  thegame.addyard(tracksFromJSON);                            //pulls a yard name;
+
+  for (t=0;t<tracksFromJSON.tracks.length;t++)  {             //loops on track's level; 
+    var currentTrack = tracksFromJSON.tracks[t]               //takes a track object;
+    thegame.addtrack(currentTrack);                           //creates div "track" and "track" button for the currentTrack;
+
+    for (u=0;u<currentTrack.units.length;u++) {               //loops on unit's level;
+      var trackid = "t"+currentTrack.track_id;                //track's id from the first loop (id="t"+id: the value from html div "track"); 
+      var currentUnit = currentTrack.units[u];                //takes a unit object;
+      var unitid = "u"+currentUnit.unit_id;                   //id of the current unit;
+      thegame.addunit(currentTrack.units[u],trackid);         //creates a div "unit" for the current track; 
+
+      if (currentUnit.hasOwnProperty('cars')) {               //checks if there is a car on the current unit;
+        lookForCar(currentUnit.cars.car_id);                  //if true, checks if that car haven't been created yet;
         if (found === false) {
-          thegame.addcar(currentUnit,unitid);
-            var carid = "car_"+currentUnit.cars.car_id;
-            switch(currentUnit.cars.car_length) {
-              case "1":
-              $('#'+carid).addClass('carOneUnit');
+          thegame.addcar(currentUnit,unitid);                 //if not, creates a "car" button for the current unit;
+            
+            var carid = "car_"+currentUnit.cars.car_id;       //id of the current car;
+
+            switch(currentUnit.cars.car_length) {             //checks the length of the curren car
+              case "1":                                       //and gives different classes based on the length
+              $('#'+carid).addClass('carOneUnit');            //what makes cars' buttons different sizes;
               break;
               case "2":
               $('#'+carid).addClass('carTwoUnits');
@@ -235,8 +227,9 @@ $(document).ready (function(){
               $('#'+carid).addClass('carFiveUnits');
               break;
             };
-            switch(currentUnit.cars.car_status) {
-              case "ready":
+
+            switch(currentUnit.cars.car_status) {             //checks the status of the current car
+              case "ready":                                   //and makes it specific color;
               $('#'+carid).addClass('white');
               break;
               case "just_arrived":
@@ -249,8 +242,9 @@ $(document).ready (function(){
               $('#'+carid).addClass('green');
               break;
             };
-            switch(currentUnit.cars.car_type) {
-              case "flat":
+
+            switch(currentUnit.cars.car_type) {               //checks the type of the current car
+              case "flat":                                    //and appends specific symbol with the length inside to the button;
               $('#'+carid).append('<h3 style="font-size:10px; line-height:0.5">|_'+currentUnit.cars.car_length+'_|</h3>');
               break;
               case "box":
@@ -263,12 +257,12 @@ $(document).ready (function(){
         }       
         
         else {
-            found = false;
+            found = false;                                    //the car was found, so sets var found to false for the next unit;
         }
        // }
       }
      else {
-        $('#'+unitid).addClass('empty_unit');
+        $('#'+unitid).addClass('empty_unit');                 //if the unit doesn't have car, gives it class "empty_unit";
      } 
     }
   };
