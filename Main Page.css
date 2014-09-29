@@ -1,7 +1,8 @@
-    .yard {
+    #yard {
+      top: 100px;
+      padding-top: 70px;
       float: left;
-      white-space: nowrap;
-      
+      white-space: nowrap;      
     }
 
     .div{
@@ -18,42 +19,22 @@
     .button {
     height:50px;
     padding-top:10px; 
-    /*width:70px;*/
     border-radius: 30%;
     border-width: 1px;
     border-style: solid;
     font-size: 15px;
     background-color: #FFFFFF;
-      /*position: relative;*/
-    /*display: inline-block;*/
     }
 
     .carOneUnit {
     position: absolute;
     width:100%;
-    /*height:50px;
-    border-radius: 30%;
-    border-width: 2px;
-    border-style: solid;
-    font-size: 15px;
-    background-color: #FFFFFF;
-    display: inline;
-    */
     }
 
     .carTwoUnits {
     width:200%;
     z-index:2;
     position: absolute;
-    /*height:50px;    
-    border-radius: 30%;
-    border-width: 2px;
-    border-style: solid;
-    font-size: 15px;
-    background-color: #FFFFFF;
-    display: inline;
-    
-    */
     }
 
     .carThreeUnits {
@@ -66,15 +47,6 @@
     width:500%;
     z-index:2;
     position: absolute;
-    /*height:50px;    
-    border-radius: 30%;
-    border-width: 2px;
-    border-style: solid;
-    font-size: 15px;
-    background-color: #FFFFFF;
-    display: inline;
-    
-    position: absolute;*/
     }
 
     .unit {
@@ -86,19 +58,19 @@
     background-color: #CDCDEE;
     display: inline-table;
     position: relative;
-    /*z-index:1;*/
-    left: 100px;
+    left: 65px;
     }
     
   .trackbutton {
     position: absolute;
     height:50px;
-    width:100px;
-    border-radius: 30%;
+    width:60px;
+    border-radius: 10%;
     border-width: 2px;
     border-style: solid;
+    border-color: #adadae;
     font-size: 15px;
-    background-color: #FFFFFF;
+    background-color: #e7ecf2;
     display: inline;
     }
 
@@ -132,6 +104,14 @@
       /*border-color: #f96d6d;*/
       box-shadow:         3px 3px 5px 6px #f96d6d;
     }
+
+    /*#refresh {
+      content: &#8635;
+      display:  inline-block; 
+      transform: rotate(90deg);
+      font-size:18px;
+      font-weight:bold;
+    }*/
 
     #move {
   background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f24537), color-stop(1, #c62d1f) );
@@ -179,6 +159,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', end
 
      }
 
+    #navbar {
+      position: fixed;
+      top: 0px;
+      z-index: 50;
+     /* width: 1000px;*/
+    }
+
     #navbar ul { 
     margin: 0; 
     padding: 10px; 
@@ -215,7 +202,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', end
     }
 
    #logo{
+    width: 
    position: relative;
    top:15px;
    left: 10px;
+   }
+
+   #searchfield {
+    /*content: &#8594;*/
+    width: 35%
    }

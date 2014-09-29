@@ -1,19 +1,19 @@
-$(document).ready(function() {
+$(document).ready(function() {                      //do not show "move" button when page loaded;
     $("#move").hide();
 });
 
 
-$(window).load(function(){
+$(window).load(function(){                          //select one car at the time on click;
   $(".button").click(function() {
-    $('.highlighted').removeClass('highlighted');
+    $('.highlighted').removeClass('highlighted');   //removes highlight from a car which was searched;
     $('.selected').removeClass('selected');
     $(this).addClass('selected');    
   });
 });
 
-$(window).load(function(){
+$(window).load(function(){                                  //onclick logo sign removes both selected and highlighted; 
   $('#logo').click(function(){
-    if (!$('.trackbutton').hasClass('highlightTrack')) {
+    if (!$('.trackbutton').hasClass('highlightTrack')) {    //doesn't work if tracks are highlighted;
       $('.highlighted').removeClass('highlighted');
       $('.selected').removeClass('selected');
     };
@@ -21,29 +21,29 @@ $(window).load(function(){
 });
 
 
-$(window).load(function() {
-  $("#searchbutton").click(function(){;
-    $('.button').filter(checkForMatch).each(highlight);
+$(window).load(function() {                                 
+  $("#searchbutton").click(function(){;                     //onclick "search" button 
+    $('.button').filter(checkForMatch).each(highlight);     //search through html elements located on the page which has class "button" meaning cars;
   });
 });
 
-var checkForMatch = function() {
-  var carName = $(this).text();
-  var searchText = $('#searchfield').prop('value');
-  if (carName.match(searchText)) {
+var checkForMatch = function() {                        //check if the car is displayed on the page;
+  var carName = $(this).text();                         //text displayed on the car;
+  var searchText = $('#searchfield').prop('value');     //input in the search field;
+  if (carName.match(searchText)) {                      //partial match: checks if text on the car contains the search input;
     return true;
   }
 };
 
-var highlight = function() {
+var highlight = function() {                            //if found highlights the car;
   console.log($(this));
-  $('.selected').removeClass('selected');
-  $('.highlighted').removeClass('highlighted');
+  $('.selected').removeClass('selected');               //removes any selections
+  $('.highlighted').removeClass('highlighted');         //or highlights from other cars;
   $("#move").hide();
   $(this).addClass('highlighted');
 };
 
-$(window).load(function() {
+$(window).load(function() {                             //when a car is clicked shows and hides "move" button;
    $(".button").click(function() {
     if ($(".button").hasClass('selected')) {
     $("#move").show();
@@ -54,39 +54,43 @@ $(window).load(function() {
 });
 
 $(window).load(function(){
-  $("#move").click(enableTrackButtons);
+  $("#move").click(enableTrackButtons);             //onclick "move" enable track buttons;
 });
 
 var enableTrackButtons = function(){
   $('.trackbutton').addClass('highlightTrack');
-  $('.trackbutton').on('click', moveCarToTrack);
+  $('.trackbutton').on('click', moveCarToTrack);    //onclick "move" enable track buttons;
 }
 
-var moveCarToTrack = function(){
-  var track = $(this).parent();
-  var emptyUnitCount = track.children('.empty_unit').length;
-  var car = $('.selected');
-  var carId = car.attr('id').replace("car_","");
+var moveCarToTrack = function(){                                          //function: move a car from trck_A to track_B;
+  var track = $(this).parent();                                           //div "track_B" which stores units (and the track button which was clicked);
+  var emptyUnitCount = track.children('.empty_unit').length;              //counts empty units on the "track_B";
+  var car = $('.selected');                                               //the car which is going to be moved (still on the "track_A");
+  var carId = car.attr('id').replace("car_","");                          //takes ID of the car;
+                                                                          //replace takes out "car_" from the ID 
+                                                                          //because button's id was created like "car_ + actual id";
+  var carLength = findById(carId).cars.car_length;                        //takes length of the car based on its id;
+  var currentUnit;                                                        //declare variable: unit from the "track_A" where the car is currently located,
+                                                                          //if car is longer than one unit, this is the first one;
 
-
-  var carLength = findById(carId).cars.car_length;
-  var currentUnit;
-  
-    if(carLength > emptyUnitCount) {
+    if(carLength > emptyUnitCount) {                                      //compare the length of the car with available space on the "track_B";
       alert('car is too long!');
-      $('.selected').parent('.unit').removeClass('empty_unit');
+      //$('.selected').parent('.unit').removeClass('empty_unit');
     } else {
-      var r = confirm("Are you sure you want to move");
+      var r = confirm("Are you sure you want to move");                   //if it is enough space,confirm the move action;
       if (r===true) {
         //$('.selected').parent('.unit').toggleClass('empty_unit');
-        currentUnit = $('.selected').parent('.unit');
-        currentUnit.addClass('empty_unit');
-        var newUnit = $(this).parent().children('.empty_unit').first();
-        newUnit.append($('.selected'));
-        newUnit.removeClass('empty_unit');
-        if (carLength > 1) {
+        currentUnit = $('.selected').parent('.unit');                     //define variable: unit from the "track_A" where the car is currently located (first one);
+        currentUnit.addClass('empty_unit');                               //set it "empty";
+        var newUnit = $(this).parent().children('.empty_unit').first();   //unit from the "track_B" where the car will be located after "move" is submitted;
+                                                                          //this: trackButton; parent: div "track"; children: units;
+                                                                          //takes the first empty unit on the "track_B";
+        newUnit.append($('.selected'));                                   //actual movement: appends the first empty unit on the "track_B" with the car;
+        newUnit.removeClass('empty_unit');                                //removes "empty_unit" class from the appended unit;
+
+        if (carLength > 1) {                                              //this loop fixes the "empty_unit" class issue for greater than one unit long cars;
           for (i=1;i<carLength;i++) {
-            currentUnit = currentUnit.next();
+            currentUnit = currentUnit.next();                             //.next() takes the next element in array;
             currentUnit.addClass('empty_unit');
             newUnit = newUnit.next();
             newUnit.removeClass('empty_unit');
@@ -94,33 +98,31 @@ var moveCarToTrack = function(){
           }
         };         
     }
-  }
-   $("button.button.selected").removeClass("selected");
-   $("button.trackbutton.highlightTrack").removeClass("highlightTrack");
-   $(this).off('click', moveCarToTrack);
-   $("#move").hide();
+  }                                                                       //after "move" is done:
+   $("button.button.selected").removeClass("selected");                   //removes "select" from the car,
+   $("button.trackbutton.highlightTrack").removeClass("highlightTrack");  //removes "highlight" from tracks,
+   $(this).off('click', moveCarToTrack);                                  //disables "click" on tracks buttons,
+   $("#move").hide();                                                     //hides "move" button;
   
-}
+};
 
 //declare global variables
 var thegame;
 thegame = new mygame;
 
 //create your object 
-function mygame(){
-  this.tracks = [];
+function mygame(){      
+  this.tracks = [];     //empty arrays to store objects from JSON;
   this.yards = [];
   this.unit = [];
   this.cars = [];
-//an object method to say something
-  this.sayhello = function (){
-    console.log ('hello world');
-  };
-  this.addtrack = function (jsonTrack){ 
-    var newtrack = new track();
-    jQuery.extend(newtrack, jsonTrack);
-    this.tracks.push(newtrack);
-    newtrack.show();
+
+  this.addtrack = function (jsonTrack){     //to add a track the function takes JSON as a parameter;
+    var newtrack = new track();             //creates a function;
+    jQuery.extend(newtrack, jsonTrack);     //.extend() merges the contents of two objects together into the first object; 
+                                            //jQuery.extend( target [, object1 ] [, objectN ] );
+    this.tracks.push(newtrack);             //pushes objects into array;
+    newtrack.show();                        //calls the function;
   };
   this.addyard = function (jsonYard){
     var newyard = new yard();
@@ -128,8 +130,8 @@ function mygame(){
     this.yards.push(newyard);
     newyard.showYardName();    
   };
-  this.addunit = function (jsonUnit, trackid){
-    var newunit = new unit();
+  this.addunit = function (jsonUnit, trackid){    //this function takes two parameters:  
+    var newunit = new unit();                     //trackid is used to show which units belong to which track;
     jQuery.extend(newunit, jsonUnit);
     this.unit.push(newunit);
     newunit.show(trackid);  
@@ -144,29 +146,25 @@ function mygame(){
 }
 
 function yard(){
-    /*var yardid;
-  var yardname;*/
   this.showYardName = function () {
-    var yard = $("#yard");
-    yard.append('<h2 align="center">'+this.yard_name+'</h2>').trigger('create');
-    console.log("y="+this.yard_name);
+    var yard = $("#yard");                                                            //#yard is the div created in the body of html page;
+    yard.append('<h2 align="center">'+this.yard_name+'</h2>').trigger('create');      //takes the yard name from JSON and appends it to the yard;
   };
 }
 
-function track()
-{  
+function track(){  
   function createTrack(jsonDataObject){
     this.track_id = jsonDataObject.track_id;
     for(i=0;i<jsonDataObject.units.length;i++){
       this.units.push(jsonDataObject.units[i])
     }
   }
-  /*var trackname;*/
+
   this.debug = function (){
      console.log ('my id is: ' + this.track_id);
   };
   this.show = function () {
-    $('#yard').append('<div class="track" id="t'+this.track_id+'"><button class="trackbutton">'+this.track_name+'</button></div>').trigger('create'); 
+    $('#yard').append('<div class="track" id="t'+this.track_id+'"><button class="trackbutton" style="font-weight:bold">'+this.track_name+'</button></div>').trigger('create'); 
   };
 }
 
