@@ -3,30 +3,43 @@ $(document).ready(function() {                      //do not show "move" button 
 });
 
 
-$(window).load(function(){                          //select one car at the time on click;
-  $(".button").click(function() {
+//$(window).load(function(){                          
+function initializeUIButtons(){  
+  $(".button").click(function() {                   //select one car at the time on click;
+    console.log('clicked');
     $('.highlighted').removeClass('highlighted');   //removes highlight from a car which was searched;
     $('.selected').removeClass('selected');
     $(this).addClass('selected');    
   });
-});
 
-$(window).load(function(){                                  //onclick logo sign removes both selected and highlighted; 
-  $('#logo').click(function(){
+                                 
+  $('#logo').click(function(){                              //onclick logo sign removes both selected and highlighted; 
     if (!$('.trackbutton').hasClass('highlightTrack')) {    //doesn't work if tracks are highlighted;
       $('.highlighted').removeClass('highlighted');
       $('.selected').removeClass('selected');
     };
   });
-});
 
-
-$(window).load(function() {                                 
+                      
   $("#searchbutton").click(function(){;                     //onclick "search" button 
     $('.button').filter(checkForMatch).each(highlight);     //search through html elements located on the page which has class "button" meaning cars;
     $('html, body').animate({scrollTop: $(".highlighted").offset().top, scrollLeft: $(".highlighted").offset().left}, "fast");
   });                                                       //scrolls screen to the found car; 
-});
+
+
+  $(".button").click(function() {                      //when a car is clicked shows and hides "move" button;
+    if ($(".button").hasClass('selected')) {
+      $("#move").show();
+    } else {
+      $("#move").hide();
+    }
+  });
+
+  $("#move").click(enableTrackButtons);             //onclick "move" enable track buttons;
+
+}
+
+
 
 var checkForMatch = function() {                        //check if the car is displayed on the page;
   var carName = $(this).text();                         //text displayed on the car;
@@ -46,19 +59,13 @@ var highlight = function() {                            //if found highlights th
 
 
 
-$(window).load(function() {                             //when a car is clicked shows and hides "move" button;
-   $(".button").click(function() {
-    if ($(".button").hasClass('selected')) {
-    $("#move").show();
-  } else {
-    $("#move").hide();
-  }
-});
-});
+                           
 
-$(window).load(function(){
-  $("#move").click(enableTrackButtons);             //onclick "move" enable track buttons;
-});
+
+
+
+  
+
 
 var enableTrackButtons = function(){
   $('.trackbutton').addClass('highlightTrack');
@@ -196,6 +203,11 @@ $(document).ready (function(){                                //builds the yard 
   
   var server = new ajaxServiceLayer();                        
   var tracksFromJSON = server.gettracks();
+
+});
+
+function BuildYard(tracksFromJSON){
+  console.log('tracksFromJSON');
   console.log(tracksFromJSON);
   thegame.addyard(tracksFromJSON);                            //pulls a yard name;
 
@@ -269,21 +281,34 @@ $(document).ready (function(){                                //builds the yard 
      } 
     }
   };
-});
+  initializeUIButtons();
+
+}
+
 
 function ajaxServiceLayer(){
   
   this.gettracks = function(){
+
+    /*$.getJSON("http://ishparii.github.io/TTX_JSON", function (data) {
+          //prompt("Success !");
+          console.log(data)
+          var yard = JSON.parse(data);
+        });*/
     
-    /*
-    $.get("getballs.aspx")
+    $.get("http://ishparii.github.io/TTX_JSON")
       .done(function(data){
-        yard = JSON.parse(data);
+        var retval = JSON.parse(data);
+        BuildYard(retval);  
       });
-    */
+    
+  };
+  
+}
+
     //fake the server for now
     //http://www.w3schools.com/json/json_syntax.asp
-    var yard = {
+   /* var yard = {
     
             "yard_id": "1",
             "yard_name": "Yard1",
@@ -541,9 +566,5 @@ function ajaxServiceLayer(){
             ]
         
     
-};
-    console.log(yard);
-    return yard;
-  };
-  
-}
+};*/
+    //console.log(yard);
