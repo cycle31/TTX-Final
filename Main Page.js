@@ -58,15 +58,6 @@ var highlight = function() {                            //if found highlights th
 };
 
 
-
-                           
-
-
-
-
-  
-
-
 var enableTrackButtons = function(){
   $('.trackbutton').addClass('highlightTrack');
   $('.trackbutton').on('click', moveCarToTrack);    //onclick "move" enable track buttons;
