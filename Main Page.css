@@ -149,8 +149,9 @@
   width:100px;
   text-decoration:none;
   text-align:center;
-  /*position: relative;
-  left: 5%;*/
+  position: fixed;
+  top: 80px;
+  left: 20px;
  }
 
     body {
