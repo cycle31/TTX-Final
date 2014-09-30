@@ -20,11 +20,18 @@ function initializeUIButtons(){
     };
   });
 
-                      
-  $("#searchbutton").click(function(){;                     //onclick "search" button 
+   function search(){
     $('.button').filter(checkForMatch).each(highlight);     //search through html elements located on the page which has class "button" meaning cars;
-    $('html, body').animate({scrollTop: $(".highlighted").offset().top, scrollLeft: $(".highlighted").offset().left}, "fast");
-  });                                                       //scrolls screen to the found car; 
+    $('html, body').animate({scrollTop: $(".highlighted").offset().top, scrollLeft: $(".highlighted").offset().left}, "fast");        //scrolls screen to the found car; 
+   };    
+
+  $("#searchbutton").click(search);                     //onclick "search" button 
+  $('#search').on('keydown', function(e) {              //onkeydown tells the android phone to do something when a specific key is pushed down. 
+    if (e.which == 13) {                                // 13 is the keycode for the search input field
+      search();                                         // The entire function allows you to activate the search function by pressing the search button and enter on the phone keyboard
+    }
+  });
+
 
 
   $(".button").click(function() {                      //when a car is clicked shows and hides "move" button;
@@ -37,7 +44,12 @@ function initializeUIButtons(){
 
   $("#move").click(enableTrackButtons);             //onclick "move" enable track buttons;
 
+    $("#move").click(function(){
+    $('html,body').animate({scrollTop: $(".trackbutton").offset().top, scrollLeft: $(".trackbutton").offset().left}, "fast");
+  });
+
 }
+
 
 
 
