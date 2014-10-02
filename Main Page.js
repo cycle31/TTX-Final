@@ -17,6 +17,7 @@ function initializeUIButtons(){
     if (!$('.trackbutton').hasClass('highlightTrack')) {    //doesn't work if tracks are highlighted;
       $('.highlighted').removeClass('highlighted');
       $('.selected').removeClass('selected');
+      $('#move').hide();
     };
   });
 
