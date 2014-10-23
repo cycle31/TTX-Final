@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="cycle31_dbModelStoreContainer" CdmEntityContainer="cycle31_dbEntities1">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="cycle31_dbModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="cycle31_dbModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="cycle31_dbModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="cycle31_dbModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="cycle31_dbModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cars">
+      <EntityTypeMapping TypeName="cycle31_dbModel.Car">
+        <MappingFragment StoreEntitySet="Cars">
+          <ScalarProperty Name="Car_Id" ColumnName="Car_Id" />
+          <ScalarProperty Name="Car_Initial" ColumnName="Car_Initial" />
+          <ScalarProperty Name="Car_Number" ColumnName="Car_Number" />
+          <ScalarProperty Name="Car_Type" ColumnName="Car_Type" />
+          <ScalarProperty Name="Car_Length" ColumnName="Car_Length" />
+          <ScalarProperty Name="Car_Status" ColumnName="Car_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeInfoes">
+      <EntityTypeMapping TypeName="cycle31_dbModel.EmployeeInfo">
+        <MappingFragment StoreEntitySet="EmployeeInfo">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jsons">
+      <EntityTypeMapping TypeName="cycle31_dbModel.json">
+        <MappingFragment StoreEntitySet="json">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FieldText" ColumnName="FieldText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tracks">
+      <EntityTypeMapping TypeName="cycle31_dbModel.Track">
+        <MappingFragment StoreEntitySet="Tracks">
+          <ScalarProperty Name="Track_Id" ColumnName="Track_Id" />
+          <ScalarProperty Name="Track_Name" ColumnName="Track_Name" />
+          <ScalarProperty Name="Track_Length" ColumnName="Track_Length" />
+          <ScalarProperty Name="Yard_Id" ColumnName="Yard_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnitCars">
+      <EntityTypeMapping TypeName="cycle31_dbModel.UnitCar">
+        <MappingFragment StoreEntitySet="UnitCar">
+          <ScalarProperty Name="UnitCar_Id" ColumnName="UnitCar_Id" />
+          <ScalarProperty Name="Car_Id" ColumnName="Car_Id" />
+          <ScalarProperty Name="Unit_Id" ColumnName="Unit_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Units">
+      <EntityTypeMapping TypeName="cycle31_dbModel.Unit">
+        <MappingFragment StoreEntitySet="Units">
+          <ScalarProperty Name="Unit_Id" ColumnName="Unit_Id" />
+          <ScalarProperty Name="Unit_Name" ColumnName="Unit_Name" />
+          <ScalarProperty Name="Track_Id" ColumnName="Track_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="cycle31_dbModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserYards">
+      <EntityTypeMapping TypeName="cycle31_dbModel.UserYard">
+        <MappingFragment StoreEntitySet="UserYard">
+          <ScalarProperty Name="UserYard_Id" ColumnName="UserYard_Id" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="Yard_Id" ColumnName="Yard_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Yards">
+      <EntityTypeMapping TypeName="cycle31_dbModel.Yard">
+        <MappingFragment StoreEntitySet="Yards">
+          <ScalarProperty Name="Yard_Id" ColumnName="Yard_Id" />
+          <ScalarProperty Name="Yard_Name" ColumnName="Yard_Name" />
+          <ScalarProperty Name="Yard_Location" ColumnName="Yard_Location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="cycle31_dbModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="getunits" FunctionName="cycle31_dbModel.Store.getunits">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="cycle31_dbModel.getunits_Result">
+          <ScalarProperty Name="yard_id" ColumnName="yard_id" />
+          <ScalarProperty Name="yard_name" ColumnName="yard_name" />
+          <ScalarProperty Name="yard_location" ColumnName="yard_location" />
+          <ScalarProperty Name="track_id" ColumnName="track_id" />
+          <ScalarProperty Name="track_name" ColumnName="track_name" />
+          <ScalarProperty Name="track_length" ColumnName="track_length" />
+          <ScalarProperty Name="unit_id" ColumnName="unit_id" />
+          <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="GetUnitsViews">
+      <EntityTypeMapping TypeName="cycle31_dbModel.GetUnitsView">
+        <MappingFragment StoreEntitySet="GetUnitsView">
+          <ScalarProperty Name="car_status" ColumnName="car_status" />
+          <ScalarProperty Name="car_length" ColumnName="car_length" />
+          <ScalarProperty Name="car_type" ColumnName="car_type" />
+          <ScalarProperty Name="car_number" ColumnName="car_number" />
+          <ScalarProperty Name="car_initial" ColumnName="car_initial" />
+          <ScalarProperty Name="car_id" ColumnName="car_id" />
+          <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+          <ScalarProperty Name="unit_id" ColumnName="unit_id" />
+          <ScalarProperty Name="track_length" ColumnName="track_length" />
+          <ScalarProperty Name="track_name" ColumnName="track_name" />
+          <ScalarProperty Name="track_id" ColumnName="track_id" />
+          <ScalarProperty Name="yard_location" ColumnName="yard_location" />
+          <ScalarProperty Name="yard_name" ColumnName="yard_name" />
+          <ScalarProperty Name="yard_id" ColumnName="yard_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

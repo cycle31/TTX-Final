@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="AzureHostedService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-01.2.3">
+  <Role name="DataService">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=portalvhdsvmtnfg7f6xn75;AccountKey=QdvzlOC2j488m7Fm4tRyueFJVRHSa+xQrW1HoVw23GfIQ40E40Wzzc30Rqn0uHLsHqPS4YCoSBakTiJMM01OOQ==" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>

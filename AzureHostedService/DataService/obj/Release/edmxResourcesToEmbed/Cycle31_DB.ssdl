@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="cycle31_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+    <Property Name="User_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cars">
+    <Key>
+      <PropertyRef Name="Car_Id" />
+    </Key>
+    <Property Name="Car_Id" Type="int" Nullable="false" />
+    <Property Name="Car_Initial" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Car_Number" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Car_Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Car_Length" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Car_Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="EmpName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Salary" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="DeptName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Designation" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="json">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="FieldText" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tracks">
+    <Key>
+      <PropertyRef Name="Track_Id" />
+    </Key>
+    <Property Name="Track_Id" Type="int" Nullable="false" />
+    <Property Name="Track_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Track_Length" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Yard_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UnitCar">
+    <Key>
+      <PropertyRef Name="UnitCar_Id" />
+    </Key>
+    <Property Name="UnitCar_Id" Type="int" Nullable="false" />
+    <Property Name="Car_Id" Type="int" Nullable="false" />
+    <Property Name="Unit_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Units">
+    <Key>
+      <PropertyRef Name="Unit_Id" />
+    </Key>
+    <Property Name="Unit_Id" Type="int" Nullable="false" />
+    <Property Name="Unit_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Track_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="User_Id" />
+    </Key>
+    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="User_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserYard">
+    <Key>
+      <PropertyRef Name="UserYard_Id" />
+    </Key>
+    <Property Name="UserYard_Id" Type="int" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="Yard_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Yards">
+    <Key>
+      <PropertyRef Name="Yard_Id" />
+    </Key>
+    <Property Name="Yard_Id" Type="int" Nullable="false" />
+    <Property Name="Yard_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Yard_Location" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'cycle31_db.dbo.GetUnitsView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="GetUnitsView">
+    <Key>
+      <PropertyRef Name="yard_id" />
+      <PropertyRef Name="yard_name" />
+      <PropertyRef Name="yard_location" />
+      <PropertyRef Name="track_id" />
+      <PropertyRef Name="track_name" />
+      <PropertyRef Name="track_length" />
+      <PropertyRef Name="unit_id" />
+      <PropertyRef Name="unit_name" />
+      <PropertyRef Name="car_id" />
+      <PropertyRef Name="car_initial" />
+      <PropertyRef Name="car_number" />
+      <PropertyRef Name="car_type" />
+      <PropertyRef Name="car_length" />
+      <PropertyRef Name="car_status" />
+    </Key>
+    <Property Name="yard_id" Type="int" Nullable="false" />
+    <Property Name="yard_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="yard_location" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="track_id" Type="int" Nullable="false" />
+    <Property Name="track_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="track_length" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="unit_id" Type="int" Nullable="false" />
+    <Property Name="unit_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="car_id" Type="int" Nullable="false" />
+    <Property Name="car_initial" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="car_number" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="car_type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="car_length" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="car_status" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Cars_0">
+    <End Role="UnitCar" Type="Self.UnitCar" Multiplicity="1" />
+    <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="UnitCar">
+        <PropertyRef Name="UnitCar_Id" />
+      </Principal>
+      <Dependent Role="Cars">
+        <PropertyRef Name="Car_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="trackyard_FK">
+    <End Role="Yards" Type="Self.Yards" Multiplicity="1" />
+    <End Role="Tracks" Type="Self.Tracks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yards">
+        <PropertyRef Name="Yard_Id" />
+      </Principal>
+      <Dependent Role="Tracks">
+        <PropertyRef Name="Yard_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="unitcar_FK">
+    <End Role="Units" Type="Self.Units" Multiplicity="1" />
+    <End Role="UnitCar" Type="Self.UnitCar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Units">
+        <PropertyRef Name="Unit_Id" />
+      </Principal>
+      <Dependent Role="UnitCar">
+        <PropertyRef Name="Unit_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="unittrack_FK">
+    <End Role="Tracks" Type="Self.Tracks" Multiplicity="1" />
+    <End Role="Units" Type="Self.Units" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tracks">
+        <PropertyRef Name="Track_Id" />
+      </Principal>
+      <Dependent Role="Units">
+        <PropertyRef Name="Track_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="getunits" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="cycle31_dbModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeInfo" EntityType="Self.EmployeeInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="json" EntityType="Self.json" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tracks" EntityType="Self.Tracks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UnitCar" EntityType="Self.UnitCar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Units" EntityType="Self.Units" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserYard" EntityType="Self.UserYard" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Yards" EntityType="Self.Yards" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GetUnitsView" EntityType="Self.GetUnitsView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [GetUnitsView].[yard_id] AS [yard_id], 
+    [GetUnitsView].[yard_name] AS [yard_name], 
+    [GetUnitsView].[yard_location] AS [yard_location], 
+    [GetUnitsView].[track_id] AS [track_id], 
+    [GetUnitsView].[track_name] AS [track_name], 
+    [GetUnitsView].[track_length] AS [track_length], 
+    [GetUnitsView].[unit_id] AS [unit_id], 
+    [GetUnitsView].[unit_name] AS [unit_name], 
+    [GetUnitsView].[car_id] AS [car_id], 
+    [GetUnitsView].[car_initial] AS [car_initial], 
+    [GetUnitsView].[car_number] AS [car_number], 
+    [GetUnitsView].[car_type] AS [car_type], 
+    [GetUnitsView].[car_length] AS [car_length], 
+    [GetUnitsView].[car_status] AS [car_status]
+    FROM [dbo].[GetUnitsView] AS [GetUnitsView]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Cars_0" Association="Self.FK_Cars_0">
+      <End Role="UnitCar" EntitySet="UnitCar" />
+      <End Role="Cars" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="trackyard_FK" Association="Self.trackyard_FK">
+      <End Role="Yards" EntitySet="Yards" />
+      <End Role="Tracks" EntitySet="Tracks" />
+    </AssociationSet>
+    <AssociationSet Name="unitcar_FK" Association="Self.unitcar_FK">
+      <End Role="Units" EntitySet="Units" />
+      <End Role="UnitCar" EntitySet="UnitCar" />
+    </AssociationSet>
+    <AssociationSet Name="unittrack_FK" Association="Self.unittrack_FK">
+      <End Role="Tracks" EntitySet="Tracks" />
+      <End Role="Units" EntitySet="Units" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

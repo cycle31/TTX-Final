@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="cycle31_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="User_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+    </Key>
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="Car_Id" />
+    </Key>
+    <Property Name="Car_Id" Type="Int32" Nullable="false" />
+    <Property Name="Car_Initial" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Car_Number" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Car_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Car_Length" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Car_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="UnitCar" Relationship="Self.FK_Cars_0" FromRole="Cars" ToRole="UnitCar" />
+  </EntityType>
+  <EntityType Name="EmployeeInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="EmpName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Salary" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeptName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="json">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="FieldText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Track">
+    <Key>
+      <PropertyRef Name="Track_Id" />
+    </Key>
+    <Property Name="Track_Id" Type="Int32" Nullable="false" />
+    <Property Name="Track_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Track_Length" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Yard_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Yard" Relationship="Self.trackyard_FK" FromRole="Tracks" ToRole="Yards" />
+    <NavigationProperty Name="Units" Relationship="Self.unittrack_FK" FromRole="Tracks" ToRole="Units" />
+  </EntityType>
+  <EntityType Name="UnitCar">
+    <Key>
+      <PropertyRef Name="UnitCar_Id" />
+    </Key>
+    <Property Name="UnitCar_Id" Type="Int32" Nullable="false" />
+    <Property Name="Car_Id" Type="Int32" Nullable="false" />
+    <Property Name="Unit_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Car" Relationship="Self.FK_Cars_0" FromRole="UnitCar" ToRole="Cars" />
+    <NavigationProperty Name="Unit" Relationship="Self.unitcar_FK" FromRole="UnitCar" ToRole="Units" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="Unit_Id" />
+    </Key>
+    <Property Name="Unit_Id" Type="Int32" Nullable="false" />
+    <Property Name="Unit_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Track_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Track" Relationship="Self.unittrack_FK" FromRole="Units" ToRole="Tracks" />
+    <NavigationProperty Name="UnitCars" Relationship="Self.unitcar_FK" FromRole="Units" ToRole="UnitCar" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="User_Id" />
+    </Key>
+    <Property Name="User_Id" Type="Int32" Nullable="false" />
+    <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserYard">
+    <Key>
+      <PropertyRef Name="UserYard_Id" />
+    </Key>
+    <Property Name="UserYard_Id" Type="Int32" Nullable="false" />
+    <Property Name="User_Id" Type="Int32" Nullable="false" />
+    <Property Name="Yard_Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Yard">
+    <Key>
+      <PropertyRef Name="Yard_Id" />
+    </Key>
+    <Property Name="Yard_Id" Type="Int32" Nullable="false" />
+    <Property Name="Yard_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Yard_Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Tracks" Relationship="Self.trackyard_FK" FromRole="Yards" ToRole="Tracks" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cars_0">
+    <End Role="UnitCar" Type="Self.UnitCar" Multiplicity="1" />
+    <End Role="Cars" Type="Self.Car" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="UnitCar">
+        <PropertyRef Name="UnitCar_Id" />
+      </Principal>
+      <Dependent Role="Cars">
+        <PropertyRef Name="Car_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="trackyard_FK">
+    <End Role="Yards" Type="Self.Yard" Multiplicity="1" />
+    <End Role="Tracks" Type="Self.Track" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yards">
+        <PropertyRef Name="Yard_Id" />
+      </Principal>
+      <Dependent Role="Tracks">
+        <PropertyRef Name="Yard_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="unittrack_FK">
+    <End Role="Tracks" Type="Self.Track" Multiplicity="1" />
+    <End Role="Units" Type="Self.Unit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tracks">
+        <PropertyRef Name="Track_Id" />
+      </Principal>
+      <Dependent Role="Units">
+        <PropertyRef Name="Track_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="unitcar_FK">
+    <End Role="Units" Type="Self.Unit" Multiplicity="1" />
+    <End Role="UnitCar" Type="Self.UnitCar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Units">
+        <PropertyRef Name="Unit_Id" />
+      </Principal>
+      <Dependent Role="UnitCar">
+        <PropertyRef Name="Unit_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="cycle31_dbEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="Cars" EntityType="Self.Car" />
+    <EntitySet Name="EmployeeInfoes" EntityType="Self.EmployeeInfo" />
+    <EntitySet Name="jsons" EntityType="Self.json" />
+    <EntitySet Name="Tracks" EntityType="Self.Track" />
+    <EntitySet Name="UnitCars" EntityType="Self.UnitCar" />
+    <EntitySet Name="Units" EntityType="Self.Unit" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="UserYards" EntityType="Self.UserYard" />
+    <EntitySet Name="Yards" EntityType="Self.Yard" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cars_0" Association="Self.FK_Cars_0">
+      <End Role="UnitCar" EntitySet="UnitCars" />
+      <End Role="Cars" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="trackyard_FK" Association="Self.trackyard_FK">
+      <End Role="Yards" EntitySet="Yards" />
+      <End Role="Tracks" EntitySet="Tracks" />
+    </AssociationSet>
+    <AssociationSet Name="unittrack_FK" Association="Self.unittrack_FK">
+      <End Role="Tracks" EntitySet="Tracks" />
+      <End Role="Units" EntitySet="Units" />
+    </AssociationSet>
+    <AssociationSet Name="unitcar_FK" Association="Self.unitcar_FK">
+      <End Role="Units" EntitySet="Units" />
+      <End Role="UnitCar" EntitySet="UnitCars" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <FunctionImport Name="getunits" ReturnType="Collection(cycle31_dbModel.getunits_Result)" />
+    <EntitySet Name="GetUnitsViews" EntityType="cycle31_dbModel.GetUnitsView" />
+  </EntityContainer>
+  <ComplexType Name="getunits_Result">
+    <Property Type="Int32" Name="yard_id" Nullable="false" />
+    <Property Type="String" Name="yard_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="yard_location" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="track_id" Nullable="false" />
+    <Property Type="String" Name="track_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="track_length" Nullable="false" MaxLength="15" />
+    <Property Type="Int32" Name="unit_id" Nullable="false" />
+    <Property Type="String" Name="unit_name" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="GetUnitsView">
+    <Key>
+      <PropertyRef Name="yard_id" />
+      <PropertyRef Name="yard_name" />
+      <PropertyRef Name="yard_location" />
+      <PropertyRef Name="track_id" />
+      <PropertyRef Name="track_name" />
+      <PropertyRef Name="track_length" />
+      <PropertyRef Name="unit_id" />
+      <PropertyRef Name="unit_name" />
+      <PropertyRef Name="car_id" />
+      <PropertyRef Name="car_initial" />
+      <PropertyRef Name="car_number" />
+      <PropertyRef Name="car_type" />
+      <PropertyRef Name="car_length" />
+      <PropertyRef Name="car_status" />
+    </Key>
+    <Property Name="yard_id" Type="Int32" Nullable="false" />
+    <Property Name="yard_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="yard_location" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="track_id" Type="Int32" Nullable="false" />
+    <Property Name="track_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="track_length" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="unit_id" Type="Int32" Nullable="false" />
+    <Property Name="unit_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="car_id" Type="Int32" Nullable="false" />
+    <Property Name="car_initial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="car_number" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="car_type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="car_length" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="car_status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>
